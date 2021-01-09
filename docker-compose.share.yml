@@ -1,0 +1,24 @@
+version: '3.7'
+services:
+  # https://hub.docker.com/r/atmoz/sftp
+  sftp:
+    build: sftp-server
+    restart: unless-stopped
+    volumes:
+        - ./upload:/home/foo/upload
+        - ./keys:/home/foo/.ssh/keys:ro
+    # ports:
+        # - "2222:22"
+    command: foo:pass:1001
+
+  # https://github.com/emazzotta/simple-fileserver-docker
+  http:
+    build: 
+      context: .
+      dockerfile: Dockerfile.http
+    restart: unless-stopped
+    volumes:
+      - ./upload:/app
+    ports:
+      - 2223:8000
+

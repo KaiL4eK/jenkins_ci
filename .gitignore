@@ -1,0 +1,4 @@
+jenkins
+keys
+nginx/certbot
+*.apk
