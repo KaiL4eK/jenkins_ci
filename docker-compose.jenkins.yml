@@ -6,9 +6,9 @@ services:
     build: android-agent
     restart: unless-stopped
 
-  # upy-build-agent:
-  #   build: upy-agent
-  #   restart: unless-stopped
+  esp-upy-build-agent:
+    build: esp-upy-agent
+    restart: unless-stopped
 
   docker-build-agent:
     build: docker-agent
