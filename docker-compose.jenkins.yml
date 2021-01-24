@@ -9,6 +9,8 @@ services:
   esp-upy-build-agent:
     build: esp-upy-agent
     restart: unless-stopped
+    ports:
+      - "2226:22"
 
   docker-build-agent:
     build: docker-agent

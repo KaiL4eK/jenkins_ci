@@ -24,6 +24,10 @@ RUN chown -R jenkins:jenkins /home/jenkins/.m2/ && \
 EXPOSE 22
 RUN ssh-keygen -A
 
+# Save env variables
+RUN echo "PATH=$PATH" >> /home/jenkins/.ssh/environment && \
+    sed -i 's/#PermitUserEnvironment no/PermitUserEnvironment yes/g' /etc/ssh/sshd_config
+
 USER jenkins
 WORKDIR /home/jenkins
 
