@@ -9,6 +9,9 @@ services:
     restart: unless-stopped
     privileged: true
     user: root
+    environment:
+      # Must be same as in nginx
+      - JENKINS_OPTS="--prefix=/ci"
     ports:
       - 2225:8080
       - 50000:50000
