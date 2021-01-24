@@ -1,4 +1,4 @@
-jenkins
+/jenkins
 keys
-nginx/certbot
-*.apk
+/nginx/certbot
+/upload
