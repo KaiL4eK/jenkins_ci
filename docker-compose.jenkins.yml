@@ -1,8 +1,21 @@
 version: '3.7'
 services:
   android-build-agent:
+    # Don`t forget to set environment variable ANDROID_HOME=/home/jenkins/android-sdk
+    #   in Jenkins as root ENV are not used (idkw)
     build: android-agent
     restart: unless-stopped
+
+  # upy-build-agent:
+  #   build: upy-agent
+  #   restart: unless-stopped
+
+  docker-build-agent:
+    build: docker-agent
+    privileged: true
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
 
   jenkins:
     image: jenkins/jenkins:lts
