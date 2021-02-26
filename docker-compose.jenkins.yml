@@ -1,23 +1,26 @@
 version: '3.7'
 services:
+  # Android SDK (Linux)
   android-build-agent:
     # Don`t forget to set environment variable ANDROID_HOME=/home/jenkins/android-sdk
     #   in Jenkins as root ENV are not used (idkw)
     build: android-agent
     restart: unless-stopped
 
+  # Micropython agent
   esp-upy-build-agent:
     build: esp-upy-agent
     restart: unless-stopped
     ports:
       - "2226:22"
 
-  docker-build-agent:
-    build: docker-agent
-    privileged: true
-    restart: unless-stopped
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+  # Linux agent
+  # docker-build-agent:
+  #   build: docker-agent
+  #   privileged: true
+  #   restart: unless-stopped
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock
 
   jenkins:
     image: jenkins/jenkins:lts
@@ -35,18 +38,18 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - /usr/local/bin/docker:/usr/local/bin/docker
 
-  registry:
-    restart: unless-stopped
-    image: registry:2
-    ports:
-      - 5000:5000
+  # registry:
+  #   restart: unless-stopped
+  #   image: registry:2
+  #   ports:
+  #     - 5000:5000
     # environment:
       # REGISTRY_HTTP_TLS_CERTIFICATE: /certs/domain.crt
       # REGISTRY_HTTP_TLS_KEY: /certs/domain.key
       # REGISTRY_AUTH: htpasswd
       # REGISTRY_AUTH_HTPASSWD_PATH: /auth/htpasswd
       # REGISTRY_AUTH_HTPASSWD_REALM: Registry Realm
-    volumes:
-      - ./regitry/data:/var/lib/registry
+    # volumes:
+      # - ./regitry/data:/var/lib/registry
       # - /path/certs:/certs
       # - /path/auth:/auth

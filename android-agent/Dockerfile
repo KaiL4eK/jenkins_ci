@@ -63,6 +63,8 @@ RUN mkdir "$ANDROID_HOME" .android \
 
 USER root
 
+RUN apt install -y virtualenv python3.8-dev
+
 RUN echo "ANDROID_HOME=$ANDROID_HOME" >> /home/jenkins/.ssh/environment && \
     sed -i 's/#PermitUserEnvironment no/PermitUserEnvironment yes/g' /etc/ssh/sshd_config
 
